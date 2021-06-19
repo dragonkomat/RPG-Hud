@@ -33,9 +33,9 @@ public class HudElementEntityInspectModern extends HudElementEntityInspectVanill
 
             String stringHealth = ((double) Math.round(health * 10)) / 10 + "/" + ((double) Math.round(maxHealth * 10)) / 10;
 
-            RenderSystem.scaled(0.5, 0.5, 0.5);
-            DrawableHelper.drawCenteredString(ms, this.mc.textRenderer, stringHealth, (posX - 29 + 44) * 2, (34 + posY) * 2, -1);
-            RenderSystem.scaled(2.0, 2.0, 2.0);
+            //RenderSystem.scaled(0.5, 0.5, 0.5);
+            DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, stringHealth, (posX - 29 + 44) * 2, (34 + posY) * 2, -1);
+            //RenderSystem.scaled(2.0, 2.0, 2.0);
 
             int x = (posX - 29 + 44 - this.mc.textRenderer.getWidth(focused.getName().getString()) / 2);
             int y = 23 + posY;
@@ -49,10 +49,10 @@ public class HudElementEntityInspectModern extends HudElementEntityInspectVanill
                     this.mc.getTextureManager().bindTexture(DrawableHelper.GUI_ICONS_TEXTURE);
                     String value = String.valueOf(armor);
                     drawRect(posX - 30, posY + 42, 8 + (mc.textRenderer.getWidth(value) / 2), 6, 0xA0000000);
-                    RenderSystem.scaled(0.5, 0.5, 0.5);
+                    //RenderSystem.scaled(0.5, 0.5, 0.5);
                     gui.drawTexture(ms, (posX - 30) * 2, (posY + 42) * 2, 34, 9, 9, 9);
                     this.mc.textRenderer.draw(ms, value, (posX - 24) * 2, (posY + 42) * 2 + 1, -1);
-                    RenderSystem.scaled(2.0, 2.0, 2.0);
+                    //RenderSystem.scaled(2.0, 2.0, 2.0);
                 }
             }
         }

@@ -34,7 +34,7 @@ public class HudElementWidgetModern extends HudElement {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_BLEND);
 		bind(getPlayerSkin(this.mc.player));
-		GlStateManager.disableDepthTest();
+		//GlStateManager.disableDepthTest();
 		GL11.glScaled(0.5D, 0.5D, 0.5D);
 		gui.drawTexture(ms, posX * 2 + 8, posY * 2 + 8, 32, 32, 32, 32);
 		gui.drawTexture(ms, posX * 2 + 8, posY * 2 + 8, 160, 32, 32, 32);

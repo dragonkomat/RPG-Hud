@@ -18,9 +18,9 @@ public class ChatMixin {
     @Inject(at = @At("HEAD"), method = "render")
     private void renderChat(CallbackInfo into) {
         if(ModRPGHud.instance.getActiveHud() instanceof HudHotbarWidget) {
-            RenderSystem.popMatrix();
-            RenderSystem.pushMatrix();
-            RenderSystem.translatef(0.0F, (float) (MinecraftClient.getInstance().getWindow().getScaledHeight() - 75), 0.0F);
+            //RenderSystem.popMatrix();
+            //RenderSystem.pushMatrix();
+            //RenderSystem.translatef(0.0F, (float) (MinecraftClient.getInstance().getWindow().getScaledHeight() - 75), 0.0F);
         }
     }
 

@@ -12,6 +12,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
+import net.minecraft.client.render.VertexFormat.DrawMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -276,11 +277,12 @@ public abstract class HudElement {
         RenderSystem.enableBlend();
         RenderSystem.disableTexture();
         RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO);
-        RenderSystem.color4f(f, f1, f2, f3);
+        //RenderSystem.color4f(f, f1, f2, f3);
+        GL11.glColor4f(f, f1, f2, f3);
         RenderSystem.disableDepthTest();
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder vertexbuffer = tessellator.getBuffer();
-        vertexbuffer.begin(7, VertexFormats.POSITION);
+        vertexbuffer.begin(DrawMode.QUADS, VertexFormats.POSITION);
         vertexbuffer.vertex(posX, (double) posY + height, 0.0D).next();
         vertexbuffer.vertex((double) posX + width, (double) posY + height, 0.0D).next();
         vertexbuffer.vertex((double) posX + width, posY, 0.0D).next();
@@ -289,7 +291,7 @@ public abstract class HudElement {
         RenderSystem.enableTexture();
         RenderSystem.disableBlend();
         RenderSystem.enableDepthTest();
-        RenderSystem.color3f(1f, 1f, 1f);
+        //RenderSystem.color3f(1f, 1f, 1f);
     }
 
     /**
@@ -515,11 +517,12 @@ public abstract class HudElement {
         RenderSystem.enableBlend();
         RenderSystem.disableTexture();
         RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO);
-        RenderSystem.color4f(f, f1, f2, f3);
+        //RenderSystem.color4f(f, f1, f2, f3);
+        GL11.glColor4f(f, f1, f2, f3);
         RenderSystem.disableDepthTest();
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder vertexbuffer = tessellator.getBuffer();
-        vertexbuffer.begin(7, VertexFormats.POSITION);
+        vertexbuffer.begin(DrawMode.QUADS, VertexFormats.POSITION);
         vertexbuffer.vertex(posX1, (double) posY1 + height1, 0.0D).next();
         vertexbuffer.vertex((double) posX2 + width2, (double) posY2 + height2, 0.0D).next();
         vertexbuffer.vertex((double) posX1 + width1, posY2, 0.0D).next();
@@ -528,7 +531,7 @@ public abstract class HudElement {
         RenderSystem.enableTexture();
         RenderSystem.disableBlend();
         RenderSystem.enableDepthTest();
-        RenderSystem.color3f(1f, 1f, 1f);
+       //RenderSystem.color3f(1f, 1f, 1f);
     }
 
     public static int offsetColorPercent(int color, int offsetPercent) {
@@ -629,17 +632,17 @@ public abstract class HudElement {
             float f = (float)item.getCooldown() - partialTicks;
 
             if (f > 0.0F) {
-                RenderSystem.pushMatrix();
+                //RenderSystem.pushMatrix();
                 float f1 = 1.0F + f / 5.0F;
-                RenderSystem.translatef(x + 8, y + 12, 0.0F);
-                RenderSystem.scalef(1.0F / f1, (f1 + 1.0F) / 2.0F, 1.0F);
-                RenderSystem.translatef((-(x + 8)), (-(y + 12)), 0.0F);
+                //RenderSystem.translatef(x + 8, y + 12, 0.0F);
+                //RenderSystem.scalef(1.0F / f1, (f1 + 1.0F) / 2.0F, 1.0F);
+                //RenderSystem.translatef((-(x + 8)), (-(y + 12)), 0.0F);
             }
 
-            this.mc.getItemRenderer().renderInGuiWithOverrides(player, item, x, y);
+            this.mc.getItemRenderer().renderInGuiWithOverrides(player, item, x, y, 0);
 
             if (f > 0.0F) {
-                RenderSystem.popMatrix();
+                //RenderSystem.popMatrix();
             }
 
             this.mc.getItemRenderer().renderGuiItemOverlay(this.mc.textRenderer, item, x, y);

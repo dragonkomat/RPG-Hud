@@ -25,10 +25,10 @@ public class HudElementLevelHotbar extends HudElement {
 
 	@Override
 	public void drawElement(DrawableHelper gui, MatrixStack ms, float zLevel, float partialTicks, int scaledWidth, int scaledHeight) {
-		GlStateManager.disableBlend();
+		//GlStateManager.disableBlend();
 		String level = String.valueOf(this.mc.player.experienceLevel);
 		DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, level, (this.settings.getBoolValue(Settings.render_player_face) ? 25 : 13) + this.settings.getPositionValue(Settings.level_position)[0] - this.mc.textRenderer.getWidth(level) / 2, scaledHeight - (this.settings.getBoolValue(Settings.render_player_face) ? 22 : 40) + this.settings.getPositionValue(Settings.level_position)[1], 0x80FF20);
-		GlStateManager.enableBlend();
+		//GlStateManager.enableBlend();
 	}
 
 }

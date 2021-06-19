@@ -39,7 +39,7 @@ public class HudElementLevelModern extends HudElement {
 		if (this.mc.textRenderer.getWidth(level) > (width + 2))
 			width = this.mc.textRenderer.getWidth(level) + 2;
 		
-		RenderSystem.enableAlphaTest();
+		//RenderSystem.enableAlphaTest();
 		RenderSystem.disableBlend();
 		
 		int posX = (this.settings.getBoolValue(Settings.render_player_face) ? 23 : 2) + this.settings.getPositionValue(Settings.level_position)[0];
@@ -53,9 +53,9 @@ public class HudElementLevelModern extends HudElement {
 		GL11.glScaled(0.5D, 0.5D, 0.5D);
 
 		if (this.settings.getStringValue(Settings.clock_time_format) == "time.24" || !this.settings.getBoolValue(Settings.render_player_face)) {
-			DrawableHelper.drawCenteredString(ms, this.mc.textRenderer, level, (posX * 2) + width, posY * 2 + 3, 0x80FF20);
+			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, level, (posX * 2) + width, posY * 2 + 3, 0x80FF20);
 		} else {
-			DrawableHelper.drawCenteredString(ms, this.mc.textRenderer, level, 70 + this.settings.getPositionValue(Settings.level_position)[0] * 2, posY * 2 + 3, 0x80FF20);
+			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, level, 70 + this.settings.getPositionValue(Settings.level_position)[0] * 2, posY * 2 + 3, 0x80FF20);
 		}
 		GL11.glScaled(2.0D, 2.0D, 2.0D);
 		RenderSystem.enableBlend();

@@ -26,7 +26,7 @@ public class HudElementAirModern extends HudElement {
     @Override
     public void drawElement(DrawableHelper gui, MatrixStack ms, float zLevel, float partialTicks, int scaledWidth, int scaledHeight) {
         double scale = getScale();
-        RenderSystem.scaled(scale, scale, scale);
+        //RenderSystem.scaled(scale, scale, scale);
 
         int airAmount = this.mc.player.getAir();
         double maxAir = this.mc.player.getMaxAir();
@@ -36,7 +36,7 @@ public class HudElementAirModern extends HudElement {
         int y = getPosY(scaledHeight);
         int x2 = getWidth(scaledWidth);
         int y2 = getHeight(scaledHeight);
-        RenderSystem.disableLighting();
+        //RenderSystem.disableLighting();
         drawRect(x, y, x2, 2, 0xA0000000);
         drawRect(x, y + y2 - 2, x2, 2, 0xA0000000);
         drawRect(x, y + 2, 2, y2 - 4, 0xA0000000);
@@ -45,7 +45,7 @@ public class HudElementAirModern extends HudElement {
         drawRect(x + 2, y + 2, (int) ((x2 - 4) * (airAmount / maxAir)), y2 - 4, this.settings.getIntValue(Settings.color_air));
 
         scale = getInvertedScale();
-        RenderSystem.scaled(scale, scale, scale);
+        //RenderSystem.scaled(scale, scale, scale);
     }
 
     @Override

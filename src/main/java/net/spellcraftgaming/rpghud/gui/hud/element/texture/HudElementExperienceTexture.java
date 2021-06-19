@@ -27,7 +27,7 @@ public class HudElementExperienceTexture extends HudElement {
 	@Override
 	public void drawElement(DrawableHelper gui, MatrixStack ms, float zLevel, float partialTicks, int scaledWidth, int scaledHeight) {
 		bind(INTERFACE);
-		RenderSystem.color3f(1f, 1f, 1f);
+		//RenderSystem.color3f(1f, 1f, 1f);
 		int exp = MathHelper.ceil(this.mc.player.getNextLevelExperience() * this.mc.player.experienceProgress);
 		int expCap = this.mc.player.getNextLevelExperience();
 		int posX = (this.settings.getBoolValue(Settings.render_player_face) ? 49 : 25) + this.settings.getPositionValue(Settings.experience_position)[0];
@@ -38,11 +38,11 @@ public class HudElementExperienceTexture extends HudElement {
 		String stringExp =  this.settings.getBoolValue(Settings.experience_percentage) ? (int) Math.floor((double) exp / (double) expCap * 100) + "%" : exp + "/" + expCap;
 	
 		if (this.settings.getBoolValue(Settings.show_numbers_experience)) {
-			RenderSystem.scaled(0.5D, 0.5D, 0.5D);
-			DrawableHelper.drawCenteredString(ms, this.mc.textRenderer, stringExp, posX * 2 + 88, posY * 2 + 4, -1);
-			RenderSystem.scaled(2.0D, 2.0D, 2.0D);
+			//RenderSystem.scaled(0.5D, 0.5D, 0.5D);
+			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, stringExp, posX * 2 + 88, posY * 2 + 4, -1);
+			//RenderSystem.scaled(2.0D, 2.0D, 2.0D);
 		}
-		RenderSystem.color3f(1f, 1f, 1f);
+		//RenderSystem.color3f(1f, 1f, 1f);
 		this.mc.getTextureManager().bindTexture(DrawableHelper.GUI_ICONS_TEXTURE);
 	}
 

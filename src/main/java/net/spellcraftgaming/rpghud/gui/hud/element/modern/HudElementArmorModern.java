@@ -26,7 +26,7 @@ public class HudElementArmorModern extends HudElement {
 	@Override
 	public void drawElement(DrawableHelper gui, MatrixStack ms, float zLevel, float partialTicks, int scaledWidth, int scaledHeight) {
 	    double scale = getScale();
-        RenderSystem.scaled(scale, scale, scale);
+        //RenderSystem.scaled(scale, scale, scale);
 		int left = getPosX(scaledWidth);
 		int top = getPosY(scaledHeight);
 
@@ -41,7 +41,7 @@ public class HudElementArmorModern extends HudElement {
 		}
 		
 		scale = getInvertedScale();
-        RenderSystem.scaled(scale, scale, scale);
+        //RenderSystem.scaled(scale, scale, scale);
 	}
 	
     @Override

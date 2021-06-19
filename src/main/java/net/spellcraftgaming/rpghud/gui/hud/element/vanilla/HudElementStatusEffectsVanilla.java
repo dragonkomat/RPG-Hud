@@ -29,7 +29,7 @@ public class HudElementStatusEffectsVanilla extends HudElement {
     @Override
     public void drawElement(DrawableHelper gui, MatrixStack ms, float na, float partialTicks, int scaledWidth, int scaledHeight) {
         double scale = getScale();
-        RenderSystem.scaled(scale, scale, scale);
+        //RenderSystem.scaled(scale, scale, scale);
         Collection<StatusEffectInstance> collection = this.mc.player.getStatusEffects();
         if(!collection.isEmpty()) {
             RenderSystem.enableBlend();
@@ -72,7 +72,7 @@ public class HudElementStatusEffectsVanilla extends HudElement {
 
                     }
 
-                    RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    //RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
                     float f = 1.0F;
                     if(effectinstance.isAmbient()) {
                         // Background Beacon
@@ -89,7 +89,7 @@ public class HudElementStatusEffectsVanilla extends HudElement {
                     }
                     Sprite textureatlassprite = potionspriteuploader.getSprite(effect);
                     this.mc.getTextureManager().bindTexture(textureatlassprite.getAtlas().getId());
-                    RenderSystem.color4f(1.0F, 1.0F, 1.0F, f);
+                    //RenderSystem.color4f(1.0F, 1.0F, 1.0F, f);
                     DrawableHelper.drawSprite(ms, k + 3, l + 3, gui.getZOffset(), 18, 18, textureatlassprite);
                     // Main
                     if(rpgHud.settings.getBoolValue(Settings.status_time) && !effectinstance.isAmbient()) {

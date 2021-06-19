@@ -39,9 +39,9 @@ public class HudElementExperienceModern extends HudElement {
 		if (this.settings.getBoolValue(Settings.show_numbers_experience)) {
 			int width2 = this.mc.textRenderer.getWidth(stringExp) / 2;
 			drawRect(1 + posX, scaledHeight - 15 + posY, width2 + 4, 8, 0xA0000000);
-			RenderSystem.scaled(0.5D, 0.5D, 0.5D);
-			DrawableHelper.drawCenteredString(ms, this.mc.textRenderer, stringExp, 6 + width2 + posX * 2, (scaledHeight - 12) * 2 - 1 + posY * 2, -1);
-			RenderSystem.scaled(2.0D, 2.0D, 2.0D);
+			//RenderSystem.scaled(0.5D, 0.5D, 0.5D);
+			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, stringExp, 6 + width2 + posX * 2, (scaledHeight - 12) * 2 - 1 + posY * 2, -1);
+			//RenderSystem.scaled(2.0D, 2.0D, 2.0D);
 		}
 	}
 

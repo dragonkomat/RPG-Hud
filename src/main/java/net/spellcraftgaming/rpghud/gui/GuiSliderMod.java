@@ -7,6 +7,7 @@ import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.spellcraftgaming.rpghud.gui.hud.element.HudElement;
 
@@ -106,10 +107,10 @@ public class GuiSliderMod extends GuiButtonTooltip {
     /**
      * Fired when the mouse button is dragged. Equivalent of MouseListener.mouseDragged(MouseEvent e).
      */
-    @Override
-    protected void renderBg(MatrixStack ms, MinecraftClient par1Minecraft, int par2, int par3)
-    {
-    }
+    //@Override
+    //protected void renderBg(MatrixStack ms, MinecraftClient par1Minecraft, int par2, int par3)
+    //{
+    //}
 
     /**
      * Returns true if the mouse has been pressed on this control. Equivalent of MouseListener.mousePressed(MouseEvent
@@ -165,12 +166,12 @@ public class GuiSliderMod extends GuiButtonTooltip {
             }
             
             String buttonText = getDisplayString();
-            mc.getTextureManager().bindTexture(WIDGETS_LOCATION);
+            mc.getTextureManager().bindTexture(WIDGETS_TEXTURE);
 			this.drawTexture(ms, this.x + (int) (this.sliderValue * (this.width - 8)), this.y, 0, 66, 4, this.height / 2);
 			this.drawTexture(ms, this.x + (int) (this.sliderValue * (this.width - 8)), this.y + (this.height / 2), 0, 86 - (this.height / 2), 4, this.height / 2);
 			this.drawTexture(ms, this.x + (int) (this.sliderValue * (this.width - 8)) + 4, this.y, 196, 66, 4, this.height / 2);
 			this.drawTexture(ms, this.x + (int) (this.sliderValue * (this.width - 8)) + 4, this.y + (this.height / 2), 196, 86 - (this.height / 2), 4, this.height / 2);
-            DrawableHelper.drawCenteredString(ms, mc.textRenderer, buttonText, this.x + this.width / 2, this.y + (this.height - 8) / 2, color);
+            DrawableHelper.drawCenteredText(ms, mc.textRenderer, buttonText, this.x + this.width / 2, this.y + (this.height - 8) / 2, color);
         }
     }
     
