@@ -35,7 +35,7 @@ public class HudElementCompassVanilla extends HudElement {
 			rotation = 200 + rotation;
 
 		bind(INTERFACE);
-		gui.drawTexture(ms, width - 56, posY, 34, 234, 112, 9);
+		//gui.drawTexture(ms, width - 56, posY, 34, 234, 112, 9);	// TODO: Correct texture drawing. Fix me! 
 		if (rotation > 0 && rotation <= 100) {
 			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, "W", width + (50 * swapSides) - (rotation * swapSides), posY + 1, -1);
 		}
