@@ -28,8 +28,8 @@ public class HudElementStatusEffectsVanilla extends HudElement {
 
     @Override
     public void drawElement(DrawableHelper gui, MatrixStack ms, float na, float partialTicks, int scaledWidth, int scaledHeight) {
-        double scale = getScale();
-        //RenderSystem.scaled(scale, scale, scale);
+        float scale = (float) getScale();
+        ms.scale(scale, scale, scale);
         Collection<StatusEffectInstance> collection = this.mc.player.getStatusEffects();
         if(!collection.isEmpty()) {
             RenderSystem.enableBlend();
@@ -102,7 +102,7 @@ public class HudElementStatusEffectsVanilla extends HudElement {
                 }
             }
         }
-        scale = getInvertedScale();
+        scale = (float) getInvertedScale();
     }
 
     @Override

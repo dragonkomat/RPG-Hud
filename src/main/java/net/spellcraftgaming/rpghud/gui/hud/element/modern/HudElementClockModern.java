@@ -1,8 +1,8 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.modern;
 
-import org.lwjgl.opengl.GL11;
+//import org.lwjgl.opengl.GL11;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+//import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -33,8 +33,8 @@ public class HudElementClockModern extends HudElementClockVanilla {
 
     @Override
     public void drawElement(DrawableHelper gui, MatrixStack ms, float zLevel, float partialTicks, int scaledWidth, int scaledHeight) {
-        double scale = getScale();
-        //RenderSystem.scaled(scale, scale, scale);
+        float scale =(float) getScale();
+        ms.scale(scale, scale, scale);
         int yOffset = getPosY(scaledHeight);
         int xOffset = getPosX(scaledWidth);
         int clockColor = 0xFFFFFF;
@@ -48,10 +48,10 @@ public class HudElementClockModern extends HudElementClockVanilla {
         DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, getTime(), xOffset + (width / 2), yOffset + 2, clockColor);
 
 
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        scale = getInvertedScale();
-        //RenderSystem.scaled(scale, scale, scale);
+        scale = (float) getInvertedScale();
+        ms.scale(scale, scale, scale);
     }
 
     @Override

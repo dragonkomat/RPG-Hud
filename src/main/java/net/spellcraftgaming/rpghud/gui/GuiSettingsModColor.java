@@ -88,10 +88,10 @@ public class GuiSettingsModColor extends GuiScreenTooltip {
 
 		this.addDrawableChild(new GuiButtonTooltip(this.width / 2 - 100, this.height / 6 + 168, 125, 20, new TranslatableText("gui.done"), button -> {
 				setSettingColor();
-				client.openScreen(parent);
+				client.setScreen(parent);
 		}).setTooltip(I18n.translate("tooltip.done", new Object[0])));
 		this.addDrawableChild(new GuiButtonTooltip(this.width / 2 + 24, this.height / 6 + 168, 75, 20, new TranslatableText("gui.cancel"), button -> {
-		    client.openScreen(parent);
+		    client.setScreen(parent);
 		}).setTooltip(I18n.translate("tooltip.cancel", new Object[0])));
 	}
 	
@@ -124,9 +124,9 @@ public class GuiSettingsModColor extends GuiScreenTooltip {
 				setColorTo(HudElement.COLOR_YELLOW);
 			} else if (button.id == 250) {
 				setSettingColor();
-				this.client.openScreen(this.parent);
+				this.client.setScreen(this.parent);
 			} else if (button.id == 251) {
-				this.client.openScreen(this.parent);
+				this.client.setScreen(this.parent);
 			}
 		}
 	}

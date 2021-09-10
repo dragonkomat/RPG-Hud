@@ -1,6 +1,6 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.texture;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+//import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -41,9 +41,9 @@ public class HudElementHealthMountTexture extends HudElement {
 		String stringHealth = this.settings.getBoolValue(Settings.mount_health_percentage) ? (int) Math.floor((double) health / (double) healthMax * 100) + "%" : health + "/" + healthMax;
 
 		if (this.settings.getBoolValue(Settings.show_numbers_health)) {
-			//RenderSystem.scaled(0.5, 0.5, 0.5);
+			ms.scale(0.5f, 0.5f, 0.5f);
 			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, stringHealth, posX * 2 + 88, posY * 2 + 4, -1);
-			//RenderSystem.scaled(2.0, 2.0, 2.0);
+			ms.scale(2.0f, 2.0f, 2.0f);
 		}
 		//RenderSystem.color3f(1f, 1f, 1f);
 		this.mc.getTextureManager().bindTexture(AbstractParentElement.GUI_ICONS_TEXTURE);

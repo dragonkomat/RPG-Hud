@@ -49,22 +49,20 @@ public class HudElementEntityInspectVanilla extends HudElement {
             int posX = (scaledWidth / 2) + this.settings.getPositionValue(Settings.inspector_position)[0];
             int posY = this.settings.getPositionValue(Settings.inspector_position)[1];
             this.mc.getTextureManager().bindTexture(DAMAGE_INDICATOR);
-            //gui.drawTexture(ms, posX - 62, 20 + posY, 0, 0, 128, 36); // TODO: Correct texture drawing. Fix me! 
+            gui.drawTexture(ms, posX - 62, 20 + posY, 0, 0, 128, 36);
             float health = focused.getHealth();
             float maxHealth = focused.getMaxHealth();
             if(health > maxHealth) health = maxHealth;
-            //drawCustomBar(posX - 25, 34 + posY, 89, 8, (double) health / (double) maxHealth * 100D,
-            //        this.settings.getIntValue(Settings.color_health), offsetColorPercent(this.settings.getIntValue(Settings.color_health), OFFSET_PERCENT));    // TODO: Correct custom bar drawing. Fix me!
+            drawCustomBar(posX - 25, 34 + posY, 89, 8, (double) health / (double) maxHealth * 100D,
+                    this.settings.getIntValue(Settings.color_health), offsetColorPercent(this.settings.getIntValue(Settings.color_health), OFFSET_PERCENT));
             String stringHealth = ((double) Math.round(health * 10)) / 10 + "/" + ((double) Math.round(maxHealth * 10)) / 10;
-            //RenderSystem.scaled(0.5, 0.5, 0.5);
-            //DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, stringHealth, (posX - 27 + 44) * 2, (36 + posY) * 2, -1);   // TODO: Correct custom bar drawing. Fix me!
-            this.drawStringWithBackground(ms, stringHealth, (posX - 27 + 44) * 2, (36 + posY) * 2, -1, 0);
-            //RenderSystem.scaled(2.0, 2.0, 2.0);
+            ms.scale(0.5f, 0.5f, 0.5f);
+            DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, stringHealth, (posX - 27 + 44) * 2, (36 + posY) * 2, -1);
+            ms.scale(2.0f, 2.0f, 2.0f);
 
             int x = (posX - 29 + 44 - this.mc.textRenderer.getWidth(focused.getName().getString()) / 2);
             int y = 25 + posY;
             this.drawStringWithBackground(ms, focused.getName().getString(), x, y, -1, 0);
-            this.drawStringWithBackground(ms, stringHealth, x, y + 12, -1, 0);   // TODO: Correct custom bar drawing. Fix me!
 
             drawEntityOnScreen(posX - 60 + 16, 22 + 27 + posY, focused);
 
@@ -73,12 +71,12 @@ public class HudElementEntityInspectVanilla extends HudElement {
                 if(armor > 0) {
                     String value = String.valueOf(armor);
                     this.mc.getTextureManager().bindTexture(DAMAGE_INDICATOR);
-                    //gui.drawTexture(ms, posX - 26, posY+44, 0, 36, 19, 8);    // TODO: Correct texture drawing. Fix me! 
+                    gui.drawTexture(ms, posX - 26, posY+44, 0, 36, 19, 8);
                     this.mc.getTextureManager().bindTexture(DrawableHelper.GUI_ICONS_TEXTURE);
-                    //RenderSystem.scaled(0.5, 0.5, 0.5);
-                    //gui.drawTexture(ms, (posX - 24) * 2 -1, (posY + 45) * 2, 34, 9, 9, 9);    // TODO: Correct texture drawing. Fix me! 
+                    ms.scale(0.5f, 0.5f, 0.5f);
+                    gui.drawTexture(ms, (posX - 24) * 2 -1, (posY + 45) * 2, 34, 9, 9, 9);
                     this.drawStringWithBackground(ms,value, (posX - 18) * 2 -2, (posY + 45) * 2 + 1, -1, 0);
-                    //RenderSystem.scaled(2.0, 2.0, 2.0);
+                    ms.scale(2.0f, 2.0f, 2.0f);
                 }  
             }
         }

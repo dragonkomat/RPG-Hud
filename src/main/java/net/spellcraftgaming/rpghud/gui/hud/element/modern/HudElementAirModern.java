@@ -1,6 +1,6 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.modern;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+//import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,8 +25,8 @@ public class HudElementAirModern extends HudElement {
 
     @Override
     public void drawElement(DrawableHelper gui, MatrixStack ms, float zLevel, float partialTicks, int scaledWidth, int scaledHeight) {
-        double scale = getScale();
-        //RenderSystem.scaled(scale, scale, scale);
+        float scale = (float) getScale();
+        ms.scale(scale, scale, scale);
 
         int airAmount = this.mc.player.getAir();
         double maxAir = this.mc.player.getMaxAir();
@@ -44,8 +44,8 @@ public class HudElementAirModern extends HudElement {
         drawRect(x + 2, y + 2, x2 - 4, y2 - 4, 0x20FFFFFF);
         drawRect(x + 2, y + 2, (int) ((x2 - 4) * (airAmount / maxAir)), y2 - 4, this.settings.getIntValue(Settings.color_air));
 
-        scale = getInvertedScale();
-        //RenderSystem.scaled(scale, scale, scale);
+        scale = (float) getInvertedScale();
+        ms.scale(scale, scale, scale);
     }
 
     @Override

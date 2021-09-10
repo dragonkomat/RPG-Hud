@@ -1,6 +1,6 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.vanilla;
 
-import org.lwjgl.opengl.GL11;
+//import org.lwjgl.opengl.GL11;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -48,18 +48,18 @@ public class HudElementDetailsVanilla extends HudElement {
 	public void drawElement(DrawableHelper gui, MatrixStack ms, float zLevel, float partialTicks, int scaledWidth, int scaledHeight) {
 		this.offset = 0;
 			if (this.settings.getBoolValue(Settings.show_armor)) {
-				GL11.glTranslated(this.settings.getPositionValue(Settings.armor_det_position)[0], this.settings.getPositionValue(Settings.armor_det_position)[1], 0);
+				ms.translate(this.settings.getPositionValue(Settings.armor_det_position)[0], this.settings.getPositionValue(Settings.armor_det_position)[1], 0);
 				drawArmorDetails(gui, ms);
-				GL11.glTranslated(-this.settings.getPositionValue(Settings.armor_det_position)[0], -this.settings.getPositionValue(Settings.armor_det_position)[1], 0);
+				ms.translate(-this.settings.getPositionValue(Settings.armor_det_position)[0], -this.settings.getPositionValue(Settings.armor_det_position)[1], 0);
 			}
-			GL11.glTranslated(this.settings.getPositionValue(Settings.item_det_position)[0], this.settings.getPositionValue(Settings.item_det_position)[1], 0);
+			ms.translate(this.settings.getPositionValue(Settings.item_det_position)[0], this.settings.getPositionValue(Settings.item_det_position)[1], 0);
 			drawItemDetails(gui, ms, 0);
 			drawItemDetails(gui, ms, 1);
-			GL11.glTranslated(-this.settings.getPositionValue(Settings.item_det_position)[0], -this.settings.getPositionValue(Settings.item_det_position)[1], 0);
+			ms.translate(-this.settings.getPositionValue(Settings.item_det_position)[0], -this.settings.getPositionValue(Settings.item_det_position)[1], 0);
 			if (this.settings.getBoolValue(Settings.show_arrow_count)) {
-				GL11.glTranslated(this.settings.getPositionValue(Settings.arrow_det_position)[0], this.settings.getPositionValue(Settings.arrow_det_position)[1], 0);
+				ms.translate(this.settings.getPositionValue(Settings.arrow_det_position)[0], this.settings.getPositionValue(Settings.arrow_det_position)[1], 0);
 				drawArrowCount(gui, ms);
-				GL11.glTranslated(-this.settings.getPositionValue(Settings.arrow_det_position)[0], -this.settings.getPositionValue(Settings.arrow_det_position)[1], 0);
+				ms.translate(-this.settings.getPositionValue(Settings.arrow_det_position)[0], -this.settings.getPositionValue(Settings.arrow_det_position)[1], 0);
 			}
 	}
 
@@ -71,20 +71,20 @@ public class HudElementDetailsVanilla extends HudElement {
 	 */
 	protected void drawArmorDetails(DrawableHelper gui, MatrixStack ms) {
 		if (this.settings.getBoolValue(Settings.reduce_size))
-			GL11.glScaled(0.5D, 0.5D, 0.5D);
+			ms.scale(0.5f, 0.5f, 0.5f);
 		for (int i = this.mc.player.getInventory().armor.size() - 1; i >= 0; i--) {
 			if (this.mc.player.getInventory().getArmorStack(i) != ItemStack.EMPTY && this.mc.player.getInventory().getArmorStack(i).getItem().isDamageable()) {
 				ItemStack item = this.mc.player.getInventory().getArmorStack(i);
 				String s = (item.getMaxDamage() - item.getDamage()) + "/" + item.getMaxDamage();
 				this.mc.getItemRenderer().renderInGui(item, this.settings.getBoolValue(Settings.reduce_size) ? 4 : 2, (this.settings.getBoolValue(Settings.reduce_size) ? 124 + (typeOffset*2): 62 +typeOffset) + this.offset);
 				if(this.settings.getBoolValue(Settings.show_durability_bar)) this.mc.getItemRenderer().renderGuiItemOverlay(this.mc.textRenderer, item, this.settings.getBoolValue(Settings.reduce_size) ? 4 : 2, (this.settings.getBoolValue(Settings.reduce_size) ? 124 + typeOffset*2: 62+typeOffset) + this.offset);
-				GL11.glDisable(GL11.GL_LIGHTING);
+				//GL11.glDisable(GL11.GL_LIGHTING);
 				DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, s, 23, (this.settings.getBoolValue(Settings.reduce_size) ? 132 + (typeOffset*2): 66 + typeOffset) + this.offset, -1);
 				this.offset += 16;
 			}
 		}
 		if (this.settings.getBoolValue(Settings.reduce_size))
-			GL11.glScaled(2.0D, 2.0D, 2.0D);
+			ms.scale(2.0f, 2.0f, 2.0f);
 	}
 
 	/**
@@ -100,15 +100,15 @@ public class HudElementDetailsVanilla extends HudElement {
 		if (item != ItemStack.EMPTY) {
 			if (this.settings.getBoolValue(Settings.show_item_durability) && item.isDamageable()) {
 				if (this.settings.getBoolValue(Settings.reduce_size))
-					GL11.glScaled(0.5D, 0.5D, 0.5D);
+					ms.scale(0.5f, 0.5f, 0.5f);
 				String s = (item.getMaxDamage() - item.getDamage()) + "/" + item.getMaxDamage();
 				this.mc.getItemRenderer().renderInGui(item, this.settings.getBoolValue(Settings.reduce_size) ? 4 : 2, (this.settings.getBoolValue(Settings.reduce_size) ? 124 + typeOffset*2 : 62 + typeOffset) + this.offset);
 				if(this.settings.getBoolValue(Settings.show_durability_bar)) this.mc.getItemRenderer().renderGuiItemOverlay(this.mc.textRenderer, item, this.settings.getBoolValue(Settings.reduce_size) ? 4 : 2, (this.settings.getBoolValue(Settings.reduce_size) ? 124 + typeOffset*2 : 62 + typeOffset) + this.offset);
-				GL11.glDisable(GL11.GL_LIGHTING);
+				//GL11.glDisable(GL11.GL_LIGHTING);
 				DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, s, 23, (this.settings.getBoolValue(Settings.reduce_size) ? 132  + typeOffset*2: 66 + typeOffset) + this.offset, -1);
 				this.offset += 16;
 				if (this.settings.getBoolValue(Settings.reduce_size))
-					GL11.glScaled(2.0D, 2.0D, 2.0D);
+					ms.scale(2.0f, 2.0f, 2.0f);
 			} else if (this.settings.getBoolValue(Settings.show_block_count) && item.getItem() instanceof BlockItem) {
 				int x = this.mc.player.getInventory().size();
 				int z = 0;
@@ -140,12 +140,12 @@ public class HudElementDetailsVanilla extends HudElement {
 				item = getItemInHand(hand);
 				String s = "x " + z;
 				if (this.settings.getBoolValue(Settings.reduce_size))
-					GL11.glScaled(0.5D, 0.5D, 0.5D);
+					ms.scale(0.5f, 0.5f, 0.5f);
 				this.mc.getItemRenderer().renderInGui(item, this.settings.getBoolValue(Settings.reduce_size) ? 4 : 2, (this.settings.getBoolValue(Settings.reduce_size) ? 124 + typeOffset*2 : 62 + typeOffset) + this.offset);
-				GL11.glDisable(GL11.GL_LIGHTING);
+				//GL11.glDisable(GL11.GL_LIGHTING);
 				DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, s, 23, (this.settings.getBoolValue(Settings.reduce_size) ? 132 + typeOffset*2 : 66 + typeOffset) + this.offset, -1);
 				if (this.settings.getBoolValue(Settings.reduce_size))
-					GL11.glScaled(2.0D, 2.0D, 2.0D);
+					ms.scale(2.0f, 2.0f, 2.0f);
 				this.offset += 16;
 			}
 		}
@@ -185,16 +185,16 @@ public class HudElementDetailsVanilla extends HudElement {
 
 			String s = "x " + z;
 			if (this.settings.getBoolValue(Settings.reduce_size))
-				GL11.glScaled(0.5D, 0.5D, 0.5D);
+				ms.scale(0.5f, 0.5f, 0.5f);
 			if (this.itemArrow == ItemStack.EMPTY) {
 				this.itemArrow = new ItemStack(Items.ARROW);
 			}
 
 			this.mc.getItemRenderer().renderInGui(this.itemArrow, this.settings.getBoolValue(Settings.reduce_size) ? 4 : 2, (this.settings.getBoolValue(Settings.reduce_size) ? 124  + typeOffset*2: 62 + typeOffset) + this.offset);
-			GL11.glDisable(GL11.GL_LIGHTING);
+			//GL11.glDisable(GL11.GL_LIGHTING);
 			DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, s, 23, (this.settings.getBoolValue(Settings.reduce_size) ? 132  + typeOffset*2: 66 + typeOffset) + this.offset, -1);
 			if (this.settings.getBoolValue(Settings.reduce_size))
-				GL11.glScaled(2.0D, 2.0D, 2.0D);
+				ms.scale(2.0f, 2.0f, 2.0f);
 			this.offset += 16;
 
 		}
@@ -262,9 +262,9 @@ public class HudElementDetailsVanilla extends HudElement {
 	public static int addArrowStackIfCorrect(ItemStack item, ItemStack arrow) {
 		Potion type1 = null;
 		if (item.getItem() instanceof TippedArrowItem)
-			type1 = PotionUtil.getPotion(item.getTag());
+			type1 = PotionUtil.getPotion(item.getNbt());
 		if (item.getItem() instanceof TippedArrowItem) {
-			Potion type2 = PotionUtil.getPotion(arrow.getTag());
+			Potion type2 = PotionUtil.getPotion(arrow.getNbt());
 			if (type1.getEffects() == type2.getEffects()) {
 				return arrow.getCount();
 			}

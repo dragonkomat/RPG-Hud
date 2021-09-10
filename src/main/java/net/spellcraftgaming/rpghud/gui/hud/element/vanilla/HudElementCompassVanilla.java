@@ -1,6 +1,6 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.vanilla;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+//import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -35,7 +35,7 @@ public class HudElementCompassVanilla extends HudElement {
 			rotation = 200 + rotation;
 
 		bind(INTERFACE);
-		//gui.drawTexture(ms, width - 56, posY, 34, 234, 112, 9);	// TODO: Correct texture drawing. Fix me! 
+		gui.drawTexture(ms, width - 56, posY, 34, 234, 112, 9); 
 		if (rotation > 0 && rotation <= 100) {
 			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, "W", width + (50 * swapSides) - (rotation * swapSides), posY + 1, -1);
 		}
@@ -75,14 +75,14 @@ public class HudElementCompassVanilla extends HudElement {
 		}
 
 		if (this.settings.getBoolValue(Settings.enable_compass_coordinates)) {
-			//if (this.settings.getBoolValue(Settings.reduce_size))
-			//	RenderSystem.scaled(0.5D, 0.5D, 0.5D);
+			if (this.settings.getBoolValue(Settings.reduce_size))
+				ms.scale(0.5f, 0.5f, 0.5f);
 			int[] pos = getPlayerPos();
 			DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, String.valueOf(pos[0]), (width - 50) * (this.settings.getBoolValue(Settings.reduce_size) ? 2 : 1), (posY + 11) * (this.settings.getBoolValue(Settings.reduce_size) ? 2 : 1), -1);
 			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, String.valueOf(pos[1]), width * (this.settings.getBoolValue(Settings.reduce_size) ? 2 : 1), (posY + 11) * (this.settings.getBoolValue(Settings.reduce_size) ? 2 : 1), -1);
 			DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, String.valueOf(pos[2]), (width + 50) * (this.settings.getBoolValue(Settings.reduce_size) ? 2 : 1) - mc.textRenderer.getWidth(String.valueOf(pos[2])), (posY + 11) * (this.settings.getBoolValue(Settings.reduce_size) ? 2 : 1), -1);
-			//if (this.settings.getBoolValue(Settings.reduce_size))
-			//	RenderSystem.scaled(2D, 2D, 2D);
+			if (this.settings.getBoolValue(Settings.reduce_size))
+				ms.scale(2f, 2f, 2f);
 		}
 	}
 

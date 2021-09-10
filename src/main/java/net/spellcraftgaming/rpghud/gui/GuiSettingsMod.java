@@ -62,7 +62,7 @@ public class GuiSettingsMod extends GuiScreenTooltip {
 			GuiButtonTooltip guismallbutton = new GuiButtonTooltip(this.width / 2 - 155 + 0 % 2 * 160, this.height / 6 - 14 + 20 * (0 >> 1), "general", new TranslatableText("gui.rpg.general"), button -> {
 					GuiButtonTooltip b = (GuiButtonTooltip) button;
 					if(b.enumOptions != null)
-					    client.openScreen(new GuiSettingsMod(instance, b.enumOptions, new TranslatableText("gui.settings.rpghud")));
+					    client.setScreen(new GuiSettingsMod(instance, b.enumOptions, new TranslatableText("gui.settings.rpghud")));
 			}).setTooltip(I18n.translate("tooltip.general", new Object[0]));
 			this.addDrawableChild(guismallbutton);
 			
@@ -74,7 +74,7 @@ public class GuiSettingsMod extends GuiScreenTooltip {
 					guismallbutton = new GuiButtonTooltip(this.width / 2 - 155 + count % 2 * 160, this.height / 6 - 14 + 20 * (count >> 1), type.name(), new TranslatableText(type.getDisplayName()), button -> {
 							GuiButtonTooltip b = (GuiButtonTooltip) button;
 							if(b.enumOptions != null){
-								this.client.openScreen(new GuiSettingsMod(instance, b.enumOptions, new TranslatableText("gui.settings.rpghud")));
+								this.client.setScreen(new GuiSettingsMod(instance, b.enumOptions, new TranslatableText("gui.settings.rpghud")));
 							}
 					}).setTooltip(I18n.translate("tooltip.element", new Object[0]));
 					this.addDrawableChild(guismallbutton);
@@ -122,7 +122,7 @@ public class GuiSettingsMod extends GuiScreenTooltip {
 							GuiButtonTooltip b = (GuiButtonTooltip) button;
 							if(b.enumOptions != null){
 								if(settings.getSetting(b.enumOptions) instanceof SettingColor){
-								    client.openScreen(new GuiSettingsModColor(instance, b.enumOptions, new TranslatableText("gui.settings.rpghud")));
+								    client.setScreen(new GuiSettingsModColor(instance, b.enumOptions, new TranslatableText("gui.settings.rpghud")));
 								} else {
 									settings.increment(b.enumOptions);
 									button.setMessage(new TranslatableText(settings.getButtonString(b.enumOptions)));
@@ -158,7 +158,7 @@ public class GuiSettingsMod extends GuiScreenTooltip {
 	                }
 				}
 				settings.saveSettings();
-				client.openScreen(parent);
+				client.setScreen(parent);
 		}));
 	}
 

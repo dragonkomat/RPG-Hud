@@ -1,6 +1,6 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.modern;
 
-import org.lwjgl.opengl.GL11;
+//import org.lwjgl.opengl.GL11;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -45,9 +45,9 @@ public class HudElementHealthModern extends HudElement {
 
 		if (this.settings.getBoolValue(Settings.show_numbers_health) && this.settings.getBoolValue(Settings.show_numbers_food)) {
 			drawRect(textPosX + (this.settings.getBoolValue(Settings.render_player_face) ? 23 : 2), posY + 4, width, 8, 0xA0000000);
-			GL11.glScaled(0.5D, 0.5D, 0.5D);
+			ms.scale(0.5f, 0.5f, 0.5f);
 			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, stringHealth, textPosX * 2 + (this.settings.getBoolValue(Settings.render_player_face) ? 42 : 0) + width + 4, posY * 2 + 12, -1);
-			GL11.glScaled(2.0D, 2.0D, 2.0D);
+			ms.scale(2.0f, 2.0f, 2.0f);
 		}
 
 		drawTetragon(posX, posX, 3 + posY, 3 + posY, 97, 83, 10, 10, 0xA0000000);
