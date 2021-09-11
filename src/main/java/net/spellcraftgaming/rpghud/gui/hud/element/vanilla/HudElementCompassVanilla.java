@@ -1,11 +1,14 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.vanilla;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+
 //import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -33,8 +36,8 @@ public class HudElementCompassVanilla extends HudElement {
 		int rotation = Math.round(((this.mc.player.headYaw % 360) / 360) * 200);
 		if (rotation < 0)
 			rotation = 200 + rotation;
-
-		bind(INTERFACE);
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShaderTexture(0, INTERFACE);
 		gui.drawTexture(ms, width - 56, posY, 34, 234, 112, 9); 
 		if (rotation > 0 && rotation <= 100) {
 			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, "W", width + (50 * swapSides) - (rotation * swapSides), posY + 1, -1);

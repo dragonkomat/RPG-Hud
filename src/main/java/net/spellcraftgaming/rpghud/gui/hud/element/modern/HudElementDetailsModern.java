@@ -1,9 +1,5 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.modern;
 
-//import org.lwjgl.opengl.GL11;
-
-//import com.mojang.blaze3d.systems.RenderSystem;
-
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawableHelper;

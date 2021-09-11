@@ -266,18 +266,18 @@ public abstract class HudElement {
     public static void drawRect(int posX, int posY, int width, int height, int color) {
         if (color == -1)
             return;
-        //float f3;
-        //if (color <= 0xFFFFFF && color >= 0)
-        //    f3 = 1.0F;
-        //else
-        //    f3 = (color >> 24 & 255) / 255.0F;
-        //float f = (color >> 16 & 255) / 255.0F;
-        //float f1 = (color >> 8 & 255) / 255.0F;
-        //float f2 = (color & 255) / 255.0F;
+        float f3;
+        if (color <= 0xFFFFFF && color >= 0)
+            f3 = 1.0F;
+        else
+            f3 = (color >> 24 & 255) / 255.0F;
+        float f = (color >> 16 & 255) / 255.0F;
+        float f1 = (color >> 8 & 255) / 255.0F;
+        float f2 = (color & 255) / 255.0F;
         RenderSystem.enableBlend();
         RenderSystem.disableTexture();
         RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO);
-        //RenderSystem.color4f(f, f1, f2, f3);
+        RenderSystem.setShaderColor(f, f1, f2, f3);
         RenderSystem.disableDepthTest();
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder vertexbuffer = tessellator.getBuffer();
@@ -505,18 +505,18 @@ public abstract class HudElement {
             return;
         if(width1 < 0) width1 = 0;
         if(width2 < 0) width2 = 0;
-        //float f3;
-        //if (color <= 0xFFFFFF && color >= 0)
-        //    f3 = 1.0F;
-        //else
-        //    f3 = (color >> 24 & 255) / 255.0F;
-        //float f = (color >> 16 & 255) / 255.0F;
-        //float f1 = (color >> 8 & 255) / 255.0F;
-        //float f2 = (color & 255) / 255.0F;
+        float f3;
+        if (color <= 0xFFFFFF && color >= 0)
+            f3 = 1.0F;
+        else
+            f3 = (color >> 24 & 255) / 255.0F;
+        float f = (color >> 16 & 255) / 255.0F;
+        float f1 = (color >> 8 & 255) / 255.0F;
+        float f2 = (color & 255) / 255.0F;
         RenderSystem.enableBlend();
         RenderSystem.disableTexture();
         RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO);
-        //RenderSystem.color4f(f, f1, f2, f3);
+        RenderSystem.setShaderColor(f, f1, f2, f3);
         RenderSystem.disableDepthTest();
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder vertexbuffer = tessellator.getBuffer();
@@ -591,16 +591,6 @@ public abstract class HudElement {
     }
 
     /**
-     * Binds a texture to the TextureManager
-     * 
-     * @param res
-     *            The ResourceLocation of the texture that should be bind
-     */
-    protected void bind(Identifier res) {
-        this.mc.getTextureManager().bindTexture(res);
-    }
-
-    /**
      * Returns the ResourceLocation for the skin of the player
      * 
      * @param player
@@ -625,22 +615,22 @@ public abstract class HudElement {
      * @param item
      *            the item (via ItemStack)
      */
-    protected void renderHotbarItem(int x, int y, float partialTicks, PlayerEntity player, ItemStack item) {
+    protected void renderHotbarItem(MatrixStack ms, int x, int y, float partialTicks, PlayerEntity player, ItemStack item) {
         if (!item.isEmpty()) {
             float f = (float)item.getCooldown() - partialTicks;
 
             if (f > 0.0F) {
-                //RenderSystem.pushMatrix();
-                //float f1 = 1.0F + f / 5.0F;
-                //RenderSystem.translatef(x + 8, y + 12, 0.0F);
-                //RenderSystem.scalef(1.0F / f1, (f1 + 1.0F) / 2.0F, 1.0F);
-                //RenderSystem.translatef((-(x + 8)), (-(y + 12)), 0.0F);
+                ms.push();
+                float f1 = 1.0F + f / 5.0F;
+                ms.translate(x + 8, y + 12, 0.0F);
+                ms.scale(1.0F / f1, (f1 + 1.0F) / 2.0F, 1.0F);
+                ms.translate((-(x + 8)), (-(y + 12)), 0.0F);
             }
 
             this.mc.getItemRenderer().renderInGuiWithOverrides(player, item, x, y, 0);
 
             if (f > 0.0F) {
-                //RenderSystem.popMatrix();
+                ms.pop();
             }
 
             this.mc.getItemRenderer().renderGuiItemOverlay(this.mc.textRenderer, item, x, y);

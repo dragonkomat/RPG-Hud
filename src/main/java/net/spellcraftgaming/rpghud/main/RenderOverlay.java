@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
 import net.spellcraftgaming.rpghud.gui.hud.element.HudElementType;
 import net.spellcraftgaming.rpghud.settings.Settings;
 
@@ -58,7 +57,7 @@ public class RenderOverlay implements HudRenderCallback{
 
         if(this.rpgHud.getActiveHud().checkElementConditions(type)) {
             if(!preventElementRenderType(type)) {
-                bind(DrawableHelper.GUI_ICONS_TEXTURE);
+                RenderSystem.setShaderTexture(0, DrawableHelper.GUI_ICONS_TEXTURE);
                 ms.push();
                 RenderSystem.enableBlend();
                 this.rpgHud.getActiveHud().drawElement(type, this.mc.inGameHud, ms, partialTicks, partialTicks, this.mc.getWindow().getScaledWidth(),
@@ -108,11 +107,7 @@ public class RenderOverlay implements HudRenderCallback{
             return rpgHud.settings.getBoolValue(id);
         return false;
     }
-    
-    private void bind(Identifier res) {
-        mc.getTextureManager().bindTexture(res);
-    }
-    
+        
     public static boolean isVanillaElement(HudElementType type) {
         return ModRPGHud.instance.getActiveHud().isVanillaElement(type);
     }

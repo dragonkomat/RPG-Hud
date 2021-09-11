@@ -2,13 +2,10 @@ package net.spellcraftgaming.rpghud.gui.hud.element.modern;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
-//import org.lwjgl.opengl.GL11;
-
-//import com.mojang.blaze3d.platform.GlStateManager;
-
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.spellcraftgaming.rpghud.gui.hud.element.HudElement;
 import net.spellcraftgaming.rpghud.gui.hud.element.HudElementType;
@@ -32,10 +29,11 @@ public class HudElementWidgetModern extends HudElement {
 		int posX = this.settings.getPositionValue(Settings.face_position)[0];
 		int posY = this.settings.getPositionValue(Settings.face_position)[1];
 		drawRect(posX + 2, posY + 2, 20, 20, 0xA0000000);
-		//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		//GL11.glDisable(GL11.GL_LIGHTING);
 		RenderSystem.enableBlend();
-		bind(getPlayerSkin(this.mc.player));
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShaderTexture(0, getPlayerSkin(this.mc.player));
 		RenderSystem.disableDepthTest();
 		ms.scale(0.5f, 0.5f, 0.5f);
 		gui.drawTexture(ms, posX * 2 + 8, posY * 2 + 8, 32, 32, 32, 32);

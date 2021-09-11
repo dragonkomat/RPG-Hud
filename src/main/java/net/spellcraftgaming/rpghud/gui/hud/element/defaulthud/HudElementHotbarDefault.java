@@ -32,8 +32,8 @@ public class HudElementHotbarDefault extends HudElement {
         if(this.mc.interactionManager.getCurrentGameMode() == GameMode.SPECTATOR)
             this.mc.inGameHud.getSpectatorHud().render(ms, partialTicks);
         else if(this.mc.getCameraEntity() instanceof PlayerEntity) {
-            //RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-            this.mc.getTextureManager().bindTexture(WIDGETS_TEX_PATH);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+            RenderSystem.setShaderTexture(0, WIDGETS_TEX_PATH);
             ItemStack itemstack = this.mc.player.getOffHandStack();
             Arm arm = this.mc.player.getMainArm().getOpposite();
             int i = scaledWidth / 2 + this.settings.getPositionValue(Settings.hotbar_position)[0];
@@ -56,15 +56,15 @@ public class HudElementHotbarDefault extends HudElement {
             for(int l = 0; l < 9; ++l) {
                 int i1 = i - 90 + l * 20 + 2;
                 int j1 = scaledHeight - 16 - 3 + posY;
-                this.renderHotbarItem(i1, j1, partialTicks, this.mc.player, this.mc.player.getInventory().main.get(l));
+                this.renderHotbarItem(ms, i1, j1, partialTicks, this.mc.player, this.mc.player.getInventory().main.get(l));
             }
 
             if(!itemstack.isEmpty()) {
                 int l1 = scaledHeight - 16 - 3 + posY;
                 if(arm == Arm.LEFT)
-                    this.renderHotbarItem(i - 91 - 26, l1, partialTicks, this.mc.player, itemstack);
+                    this.renderHotbarItem(ms, i - 91 - 26, l1, partialTicks, this.mc.player, itemstack);
                 else
-                    this.renderHotbarItem(i + 91 + 10, l1, partialTicks, this.mc.player, itemstack);
+                    this.renderHotbarItem(ms, i + 91 + 10, l1, partialTicks, this.mc.player, itemstack);
             }
 
             if(this.mc.options.attackIndicator == AttackIndicator.HOTBAR) {
@@ -75,9 +75,9 @@ public class HudElementHotbarDefault extends HudElement {
                     if(arm == Arm.RIGHT)
                         j2 = i - 91 - 22;
 
-                    this.mc.getTextureManager().bindTexture(DrawableHelper.GUI_ICONS_TEXTURE);
+                    RenderSystem.setShaderTexture(0, DrawableHelper.GUI_ICONS_TEXTURE);
                     int k1 = (int) (f1 * 19.0F);
-                    //RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                     gui.drawTexture(ms, j2, i2, 0, 94, 18, 18);
                     gui.drawTexture(ms, j2, i2 + 18 - k1, 18, 112 - k1, 18, k1);
                 }

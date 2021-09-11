@@ -1,7 +1,5 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.vanilla;
 
-//import org.lwjgl.opengl.GL11;
-
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

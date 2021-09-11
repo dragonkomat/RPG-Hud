@@ -1,5 +1,7 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.modern;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+
 //import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.fabricmc.api.EnvType;
@@ -41,12 +43,12 @@ public class HudElementEntityInspectModern extends HudElementEntityInspectVanill
             int y = 23 + posY;
             this.mc.textRenderer.draw(ms, focused.getName().getString(), x, y, -1);
 
-            drawEntityOnScreen(posX - 60 + 14, 22 + 25 + posY, focused);
+            drawEntityOnScreen(ms, posX - 60 + 14, 22 + 25 + posY, focused);
 
             if(settings.getBoolValue(Settings.show_entity_armor)) {
                 int armor = focused.getArmor();
                 if(armor > 0) {
-                    this.mc.getTextureManager().bindTexture(DrawableHelper.GUI_ICONS_TEXTURE);
+                    RenderSystem.setShaderTexture(0, DrawableHelper.GUI_ICONS_TEXTURE);
                     String value = String.valueOf(armor);
                     drawRect(posX - 30, posY + 42, 8 + (mc.textRenderer.getWidth(value) / 2), 6, 0xA0000000);
                     ms.scale(0.5f, 0.5f, 0.5f);

@@ -30,8 +30,8 @@ public class HudElementHotbarHotbar extends HudElement {
         if(this.mc.interactionManager.getCurrentGameMode() == GameMode.SPECTATOR) {
             this.mc.inGameHud.getSpectatorHud().render(ms, partialTicks);
 		} else if (this.mc.getCameraEntity() instanceof PlayerEntity) {
-			//RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-			this.mc.getTextureManager().bindTexture(WIDGETS_TEX_PATH);
+			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+			RenderSystem.setShaderTexture(0, WIDGETS_TEX_PATH);
 			PlayerEntity entityplayer = (PlayerEntity) this.mc.getCameraEntity();
 			ItemStack itemstack = this.mc.player.getOffHandStack();
 			int i = scaledWidth / 2;
@@ -52,11 +52,11 @@ public class HudElementHotbarHotbar extends HudElement {
 			for (int l = 0; l < 9; ++l) {
 				int i1 = posX + 1 + l * 20 + 2;
 				int j1 = scaledHeight - 16 - 19 - 9 + posY;
-				this.renderHotbarItem(i1, j1, partialTicks, entityplayer, this.mc.player.getInventory().main.get(l));
+				this.renderHotbarItem(ms, i1, j1, partialTicks, entityplayer, this.mc.player.getInventory().main.get(l));
 			}
 
 			int l1 = scaledHeight - 47 + 3 + posY;
-			this.renderHotbarItem(posX + 184, l1, partialTicks, entityplayer, itemstack);
+			this.renderHotbarItem(ms, posX + 184, l1, partialTicks, entityplayer, itemstack);
 
             if(this.mc.options.attackIndicator == AttackIndicator.HOTBAR) {
                 float f1 = this.mc.player.getAttackCooldownProgress(0.0F);
@@ -65,9 +65,9 @@ public class HudElementHotbarHotbar extends HudElement {
 					int i2 = scaledHeight - 36 + posY;
 					int j2 = i + 40 + this.settings.getPositionValue(Settings.hotbar_position)[0];
 
-                    this.mc.getTextureManager().bindTexture(DrawableHelper.GUI_ICONS_TEXTURE);
+                    RenderSystem.setShaderTexture(0, DrawableHelper.GUI_ICONS_TEXTURE);
 					int k1 = (int) (f1 * 19.0F);
-					//RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+					RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 					gui.drawTexture(ms, j2, i2 - 9, 0, 94, 18, 18);
 					gui.drawTexture(ms, j2, i2 - 9 + 18 - k1, 18, 112 - k1, 18, k1);
 				}

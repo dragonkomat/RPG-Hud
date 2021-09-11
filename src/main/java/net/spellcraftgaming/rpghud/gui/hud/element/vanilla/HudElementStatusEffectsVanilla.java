@@ -36,12 +36,12 @@ public class HudElementStatusEffectsVanilla extends HudElement {
             int i = 0;
             int j = 0;
             StatusEffectSpriteManager potionspriteuploader = this.mc.getStatusEffectSpriteManager();
-            this.mc.getTextureManager().bindTexture(HandledScreen.BACKGROUND_TEXTURE);
+            RenderSystem.setShaderTexture(0, HandledScreen.BACKGROUND_TEXTURE);
 
             for(StatusEffectInstance effectinstance : Ordering.natural().reverse().sortedCopy(collection)) {
                 StatusEffect effect = effectinstance.getEffectType();
                 // Rebind in case previous renderHUDEffect changed texture
-                this.mc.getTextureManager().bindTexture(HandledScreen.BACKGROUND_TEXTURE);
+                RenderSystem.setShaderTexture(0, HandledScreen.BACKGROUND_TEXTURE);
                 if(effectinstance.shouldShowIcon()) {
                     int k = getPosX(scaledWidth);
                     int l = getPosY(scaledHeight);
@@ -72,7 +72,7 @@ public class HudElementStatusEffectsVanilla extends HudElement {
 
                     }
 
-                    //RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                     float f = 1.0F;
                     if(effectinstance.isAmbient()) {
                         // Background Beacon
@@ -88,8 +88,8 @@ public class HudElementStatusEffectsVanilla extends HudElement {
                         }
                     }
                     Sprite textureatlassprite = potionspriteuploader.getSprite(effect);
-                    this.mc.getTextureManager().bindTexture(textureatlassprite.getAtlas().getId());
-                    //RenderSystem.color4f(1.0F, 1.0F, 1.0F, f);
+                    RenderSystem.setShaderTexture(0, textureatlassprite.getAtlas().getId());
+                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f);
                     DrawableHelper.drawSprite(ms, k + 3, l + 3, gui.getZOffset(), 18, 18, textureatlassprite);
                     // Main
                     if(rpgHud.settings.getBoolValue(Settings.status_time) && !effectinstance.isAmbient()) {

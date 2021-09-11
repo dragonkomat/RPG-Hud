@@ -48,7 +48,7 @@ public class HudElementEntityInspectVanilla extends HudElement {
         if(focused != null) {
             int posX = (scaledWidth / 2) + this.settings.getPositionValue(Settings.inspector_position)[0];
             int posY = this.settings.getPositionValue(Settings.inspector_position)[1];
-            this.mc.getTextureManager().bindTexture(DAMAGE_INDICATOR);
+            RenderSystem.setShaderTexture(0, DAMAGE_INDICATOR);
             gui.drawTexture(ms, posX - 62, 20 + posY, 0, 0, 128, 36);
             float health = focused.getHealth();
             float maxHealth = focused.getMaxHealth();
@@ -64,15 +64,15 @@ public class HudElementEntityInspectVanilla extends HudElement {
             int y = 25 + posY;
             this.drawStringWithBackground(ms, focused.getName().getString(), x, y, -1, 0);
 
-            drawEntityOnScreen(posX - 60 + 16, 22 + 27 + posY, focused);
+            drawEntityOnScreen(ms, posX - 60 + 16, 22 + 27 + posY, focused);
 
             if(settings.getBoolValue(Settings.show_entity_armor)) {
                 int armor = focused.getArmor();
                 if(armor > 0) {
                     String value = String.valueOf(armor);
-                    this.mc.getTextureManager().bindTexture(DAMAGE_INDICATOR);
+                    RenderSystem.setShaderTexture(0, DAMAGE_INDICATOR);
                     gui.drawTexture(ms, posX - 26, posY+44, 0, 36, 19, 8);
-                    this.mc.getTextureManager().bindTexture(DrawableHelper.GUI_ICONS_TEXTURE);
+                    RenderSystem.setShaderTexture(0, DrawableHelper.GUI_ICONS_TEXTURE);
                     ms.scale(0.5f, 0.5f, 0.5f);
                     gui.drawTexture(ms, (posX - 24) * 2 -1, (posY + 45) * 2, 34, 9, 9, 9);
                     this.drawStringWithBackground(ms,value, (posX - 18) * 2 -2, (posY + 45) * 2 + 1, -1, 0);
@@ -82,7 +82,7 @@ public class HudElementEntityInspectVanilla extends HudElement {
         }
     }
 
-    public static void drawEntityOnScreen(int posX, int posY, LivingEntity entity) {
+    public static void drawEntityOnScreen(MatrixStack ms, int posX, int posY, LivingEntity entity) {
         int scale = 1;
         int s1 = (int) (18 / entity.getHeight());
         int s3 = (int) (18 / entity.getScaleFactor());

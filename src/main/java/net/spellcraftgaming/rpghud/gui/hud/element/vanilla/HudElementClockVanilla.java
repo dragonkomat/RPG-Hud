@@ -1,6 +1,6 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.vanilla;
 
-//import org.lwjgl.opengl.GL11;
+import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -36,7 +36,7 @@ public class HudElementClockVanilla extends HudElement {
 		if (this.settings.getBoolValue(Settings.reduce_size))
 			ms.scale(0.5f, 0.5f, 0.5f);
 		DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, getTime(), (this.settings.getBoolValue(Settings.reduce_size) ? 8 : 4) + this.settings.getPositionValue(Settings.clock_position)[0], (this.settings.getBoolValue(Settings.reduce_size) ? 104 : 52) + this.settings.getPositionValue(Settings.clock_position)[1], clockColor);
-		//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		if (this.settings.getBoolValue(Settings.reduce_size))
 			ms.scale(2.0f, 2.0f, 2.0f);
 	}

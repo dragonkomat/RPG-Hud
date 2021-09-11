@@ -79,11 +79,11 @@ public class HudElementCompassModern extends HudElementCompassVanilla {
 			drawRect((int) (posX - ((float) this.mc.textRenderer.getWidth(String.valueOf(pos[1])) / 4) - 2), posY + 11, this.mc.textRenderer.getWidth(String.valueOf(pos[1])) / 2 + 4, 6, 0xA0000000);
 			drawRect((posX + 48) - (this.mc.textRenderer.getWidth(String.valueOf(pos[2])) / 2) - 2, posY + 11, this.mc.textRenderer.getWidth(String.valueOf(pos[2])) / 2 + 4, 6, 0xA0000000);
 
-			//RenderSystem.scaled(0.5D, 0.5D, 0.5D);
+			ms.scale(0.5f, 0.5f, 0.5f);
 			DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, String.valueOf(pos[0]), (posX - 48) * 2, (posY + 12) * 2, -1);
 			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, String.valueOf(pos[1]), posX * 2, (posY + 12) * 2, -1);
 			DrawableHelper.drawStringWithShadow(ms, this.mc.textRenderer, String.valueOf(pos[2]), (posX + 48) * 2 - this.mc.textRenderer.getWidth(String.valueOf(pos[2])), (posY + 12) * 2, -1);
-			//RenderSystem.scaled(2D, 2D, 2D);
+			ms.scale(2f, 2f, 2f);
 		}
 	}
 	

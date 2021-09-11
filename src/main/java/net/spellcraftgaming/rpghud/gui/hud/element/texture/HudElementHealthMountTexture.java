@@ -1,11 +1,14 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.texture;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+
 //import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.AbstractParentElement;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.spellcraftgaming.rpghud.gui.hud.element.HudElement;
@@ -27,7 +30,8 @@ public class HudElementHealthMountTexture extends HudElement {
 
 	@Override
 	public void drawElement(DrawableHelper gui, MatrixStack ms, float zLevel, float partialTicks, int scaledWidth, int scaledHeight) {
-		bind(INTERFACE);
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShaderTexture(0, INTERFACE);
 		//RenderSystem.color3f(1f, 1f, 1f);
 		LivingEntity mount = (LivingEntity) this.mc.player.getVehicle();
 		int health = (int) Math.ceil(mount.getHealth());
@@ -46,7 +50,7 @@ public class HudElementHealthMountTexture extends HudElement {
 			ms.scale(2.0f, 2.0f, 2.0f);
 		}
 		//RenderSystem.color3f(1f, 1f, 1f);
-		this.mc.getTextureManager().bindTexture(AbstractParentElement.GUI_ICONS_TEXTURE);
+		RenderSystem.setShaderTexture(0, AbstractParentElement.GUI_ICONS_TEXTURE);
 	}
 
 }

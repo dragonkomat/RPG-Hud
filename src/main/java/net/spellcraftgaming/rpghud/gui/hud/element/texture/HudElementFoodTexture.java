@@ -1,10 +1,13 @@
 package net.spellcraftgaming.rpghud.gui.hud.element.texture;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+
 //import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.HungerManager;
@@ -28,7 +31,8 @@ public class HudElementFoodTexture extends HudElement {
 
 	@Override
 	public void drawElement(DrawableHelper gui, MatrixStack ms, float zLevel, float partialTicks, int scaledWidth, int scaledHeight) {
-		bind(INTERFACE);
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShaderTexture(0, INTERFACE);
 		//RenderSystem.color3f(1f, 1f, 1f);
 		HungerManager stats = this.mc.player.getHungerManager();
 		int stamina = stats.getFoodLevel();
@@ -63,7 +67,7 @@ public class HudElementFoodTexture extends HudElement {
 		if (this.settings.getBoolValue(Settings.show_numbers_food))
 			DrawableHelper.drawCenteredText(ms, this.mc.textRenderer, staminaString, posX + 55, posY + 2, -1);
 		//RenderSystem.color3f(1f, 1f, 1f);
-		this.mc.getTextureManager().bindTexture(DrawableHelper.GUI_ICONS_TEXTURE);
+		RenderSystem.setShaderTexture(0, DrawableHelper.GUI_ICONS_TEXTURE);
 	}
 
 }
