@@ -50,6 +50,11 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = 16
 }
 
+// For checking deprecated APIs
+//tasks.withType(JavaCompile) {
+//    options.compilerArgs += ['-Xlint:deprecation']
+//}
+
 java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
